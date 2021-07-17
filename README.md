@@ -1,9 +1,9 @@
 # ScadaBR
 
-### Você pode baixar a versão mais atual do ScadaBR [aqui](https://github.com/ScadaBR/ScadaBR/releases/latest). Dificilmente eu lançarei novas versões em um futuro próximo (motivo: fui pra faculdade).
+### Você pode baixar a versão mais atual do ScadaBR [aqui](https://github.com/ScadaBR/ScadaBR/releases/latest). .
 
 ## Sobre
-O ScadaBR A principal intenção desse projeto é gerar uma versão do ScadaBR estável e mais atualizada com as tecnologias disponíveis em 2021, através de um front-end com várias melhorias de visual e usabilidade. Além disso, o ScadaBR-EF traz diversas correções de pequenos bugs que melhoram a experiência do usuário no dia a dia.
+O ScadaBR A principal intenção desse projeto é gerar uma versão do ScadaBR estável e mais atualizada com as tecnologias disponíveis em 2021, através de um front-end com várias melhorias de visual e usabilidade. Além disso, o ScadaBR traz diversas correções de pequenos bugs que melhoram a experiência do usuário no dia a dia.
 
 ## Instalação
 O ScadaBR tem instaladores para Windows e Linux, obtenha-os na [página dos releases](https://github.com/ScadaBR/ScadaBR/releases/latest/).
@@ -18,11 +18,9 @@ Se você quiser ou precisar realizar uma instalação manual, siga estes passos:
 Obs.: o banco de dados usado por padrão é o Derby. Caso você queira utilizar outro banco de dados (como o MySql) a configuração a ser realizada é a mesma que seria feita para outras versões do ScadaBR (isto é, editar o arquivo `/WEB-INF/classes/env.properties`).
 
 ## O ScadaBR é estável?
-Em teoria, sim. Uma vez que o foco desse projeto é melhorar o front-end do ScadaBR, poucas foram as alterações no código Java em si. Portanto, o ScadaBR-EF deveria ser tão estável quanto o ScadaBR 1.1 CE, no qual foi baseado. Entretanto, como eu não pude realizar muitos testes em cenários reais (dos protocolos de comunicação), não é possível garantir que o ScadaBR-EF realmente funcione de forma satisfatória para todos os casos.
+Em teoria, sim. Uma vez que o foco desse projeto é melhorar o front-end do ScadaBR, poucas foram as alterações no código Java em si. Portanto, o ScadaBR deveria ser tão estável quanto o ScadaBR 1.1 CE, no qual foi baseado. Entretanto, como eu não pude realizar muitos testes em cenários reais (dos protocolos de comunicação), não é possível garantir que o ScadaBR realmente funcione de forma satisfatória para todos os casos.
 
-## ScadaBR 1.2 vs. ScadaBR 1.1CE vs. Scada-LTS
-O ScadaBR 1.2 não foi criado com qualquer intenção de ser um concorrente do Scada-LTS ou uma divisão no projeto ScadaBR original. O Scada-LTS é muito superior ao ScadaBR-EF, entretanto, como seu desenvolvimento ainda não chegou a uma versão "final" estável, e como o ScadaBR atualmente está preso ao Java 6, o ScadaBR foi pensado para possivelmente poder ser adotado como um "intermediário" para preencher a lacuna entre o ScadaBR atual (1.0/1.1) e o futuro Scada-LTS.
-
+## Situação atual do ScadaBR 
 
 Recursos   | ScadaBR 1.0 | ScadaBR 1.1 | ScadaBR 1.2 | Scada-LTS
 ---------- | ----------- | ----------- | ---------- | ---------
