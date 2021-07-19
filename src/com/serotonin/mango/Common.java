@@ -90,7 +90,7 @@ public class Common {
 	 * version.
 	 */
 	public static final String getVersion() {
-		return "1.1.0 (EF release 3)";
+		return "1.2.0";
 	}
 
 	public interface ContextKeys {
