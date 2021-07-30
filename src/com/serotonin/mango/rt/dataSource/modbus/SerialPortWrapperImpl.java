@@ -21,6 +21,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.serotonin.modbus4j.serial.SerialPortWrapper;
 
 import gnu.io.CommPort;
@@ -46,6 +49,8 @@ public class SerialPortWrapperImpl implements SerialPortWrapper {
 	private int stopBits;
 	private int parity;
 	private int timeOutComPort;
+
+	private final Log LOG = LogFactory.getLog(ModbusDataSource.class);
 
 	public SerialPortWrapperImpl() {
 		super();
@@ -112,7 +117,7 @@ public class SerialPortWrapperImpl implements SerialPortWrapper {
 		try {
 			commPort = portIdentifier.open(commPortId, timeOutComPort);
 		} catch (Exception e) {
-			System.out.println("SerialPortWrapperImpl: error opening serial port " + commPortId);
+			LOG.debug("SerialPortWrapperImpl: error opening serial port " + commPortId);
 			e.printStackTrace();
 			// Rethrow
 			throw e;
@@ -126,8 +131,8 @@ public class SerialPortWrapperImpl implements SerialPortWrapper {
 				serialPort.setFlowControlMode(this.getFlowControlIn() | this.getFlowControlOut());
 			} catch (Exception e) {
 				e.printStackTrace();
+				LOG.debug(e);
 			}
-			// System.out.println("Open " + this.commPortId + " sucessfully !");
 		} else {
 			// System.out.println("Oops!");
 		}
@@ -139,7 +144,7 @@ public class SerialPortWrapperImpl implements SerialPortWrapper {
 		try {
 			in = serialPort.getInputStream();
 		} catch (IOException e) {
-			System.out.println("SerialPortWrapperImpl: error getting input stream");
+			LOG.error("SerialPortWrapperImpl: error getting input stream: " + e);
 			e.printStackTrace();
 		}
 		return in;
@@ -151,7 +156,7 @@ public class SerialPortWrapperImpl implements SerialPortWrapper {
 		try {
 			out = serialPort.getOutputStream();
 		} catch (IOException e) {
-			System.out.println("SerialPortWrapperImpl: error getting output stream");
+			LOG.error("SerialPortWrapperImpl: error getting output stream: " + e);
 			e.printStackTrace();
 		}
 

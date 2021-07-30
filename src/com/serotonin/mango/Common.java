@@ -392,7 +392,7 @@ public class Common {
 			throw new CommPortConfigException(e.getMessage());
 		} catch (NoClassDefFoundError e) {
 			throw new CommPortConfigException(
-					"Comm configuration error. Check that rxtx DLL or libraries have been correctly installed.");
+					"Comm configuration error. Check that serial libraries (RXTXComm or NRJavaSerial) have been correctly installed.");
 		}
 	}
 

@@ -108,10 +108,8 @@ public class SystemSettingsDao extends BaseDao {
 		String result = cache.get(key);
 		if (result == null) {
 			if (!cache.containsKey(key)) {
-				result = new BaseDao()
-						.queryForObject(
-								"select settingValue from systemSettings where settingName=?",
-								new Object[] { key }, String.class, null);
+				result = new BaseDao().queryForObject("select settingValue from systemSettings where settingName=?",
+						new Object[] { key }, String.class, null);
 				cache.put(key, result);
 				if (result == null)
 					result = defaultValue;
@@ -156,21 +154,17 @@ public class SystemSettingsDao extends BaseDao {
 
 		// Update the database
 		final ExtendedJdbcTemplate ejt2 = ejt;
-		getTransactionTemplate().execute(
-				new TransactionCallbackWithoutResult() {
-					@Override
-					protected void doInTransactionWithoutResult(
-							TransactionStatus status) {
-						// Delete any existing value.
-						removeValue(key);
+		getTransactionTemplate().execute(new TransactionCallbackWithoutResult() {
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus status) {
+				// Delete any existing value.
+				removeValue(key);
 
-						// Insert the new value if it's not null.
-						if (value != null)
-							ejt2.update(
-									"insert into systemSettings values (?,?)",
-									new Object[] { key, value });
-					}
-				});
+				// Insert the new value if it's not null.
+				if (value != null)
+					ejt2.update("insert into systemSettings values (?,?)", new Object[] { key, value });
+			}
+		});
 	}
 
 	public void setIntValue(String key, int value) {
@@ -188,14 +182,12 @@ public class SystemSettingsDao extends BaseDao {
 		// Reset the cached values too.
 		FUTURE_DATE_LIMIT = -1;
 
-		ejt.update("delete from systemSettings where settingName=?",
-				new Object[] { key });
+		ejt.update("delete from systemSettings where settingName=?", new Object[] { key });
 	}
 
 	public static long getFutureDateLimit() {
 		if (FUTURE_DATE_LIMIT == -1) {
-			FUTURE_DATE_LIMIT = Common.getMillis(
-					getIntValue(FUTURE_DATE_LIMIT_PERIOD_TYPE),
+			FUTURE_DATE_LIMIT = Common.getMillis(getIntValue(FUTURE_DATE_LIMIT_PERIOD_TYPE),
 					getIntValue(FUTURE_DATE_LIMIT_PERIODS));
 		}
 		return FUTURE_DATE_LIMIT;
@@ -243,8 +235,7 @@ public class SystemSettingsDao extends BaseDao {
 		DEFAULT_VALUES.put(REPORT_PURGE_PERIOD_TYPE, Common.TimePeriods.MONTHS);
 		DEFAULT_VALUES.put(REPORT_PURGE_PERIODS, 1);
 
-		DEFAULT_VALUES.put(NEW_VERSION_NOTIFICATION_LEVEL,
-				NOTIFICATION_LEVEL_STABLE);
+		DEFAULT_VALUES.put(NEW_VERSION_NOTIFICATION_LEVEL, NOTIFICATION_LEVEL_STABLE);
 
 		DEFAULT_VALUES.put(LANGUAGE, "pt");
 
@@ -254,9 +245,8 @@ public class SystemSettingsDao extends BaseDao {
 		DEFAULT_VALUES.put(UI_PERFORAMANCE, 2000);
 		DEFAULT_VALUES.put(GROVE_LOGGING, false);
 		DEFAULT_VALUES.put(FUTURE_DATE_LIMIT_PERIODS, 24);
-		DEFAULT_VALUES.put(FUTURE_DATE_LIMIT_PERIOD_TYPE,
-				Common.TimePeriods.HOURS);
-		DEFAULT_VALUES.put(INSTANCE_DESCRIPTION, "ScadaBR - 1.1 CE");
+		DEFAULT_VALUES.put(FUTURE_DATE_LIMIT_PERIOD_TYPE, Common.TimePeriods.HOURS);
+		DEFAULT_VALUES.put(INSTANCE_DESCRIPTION, "ScadaBR 1.2");
 
 		DEFAULT_VALUES.put(CHART_BACKGROUND_COLOUR, "white");
 		DEFAULT_VALUES.put(PLOT_BACKGROUND_COLOUR, "white");
@@ -265,45 +255,43 @@ public class SystemSettingsDao extends BaseDao {
 
 	public void resetDataBase() {
 		final ExtendedJdbcTemplate ejt2 = ejt;
-		getTransactionTemplate().execute(
-				new TransactionCallbackWithoutResult() {
-					@Override
-					protected void doInTransactionWithoutResult(
-							TransactionStatus status) {
+		getTransactionTemplate().execute(new TransactionCallbackWithoutResult() {
+			@Override
+			protected void doInTransactionWithoutResult(TransactionStatus status) {
 
-						ejt2.execute("delete from watchLists");
-						ejt2.execute("delete from mangoViews");
+				ejt2.execute("delete from watchLists");
+				ejt2.execute("delete from mangoViews");
 
-						ejt2.execute("delete from pointEventDetectors");
-						ejt2.execute("delete from compoundEventDetectors");
-						ejt2.execute("delete from scheduledEvents");
+				ejt2.execute("delete from pointEventDetectors");
+				ejt2.execute("delete from compoundEventDetectors");
+				ejt2.execute("delete from scheduledEvents");
 
-						ejt2.execute("delete from pointLinks");
+				ejt2.execute("delete from pointLinks");
 
-						ejt2.execute("delete from events");
-						ejt2.execute("delete from reports");
-						ejt2.execute("delete from pointHierarchy");
+				ejt2.execute("delete from events");
+				ejt2.execute("delete from reports");
+				ejt2.execute("delete from pointHierarchy");
 
-						ejt2.execute("delete from eventHandlers");
-						ejt2.execute("delete from scripts");
+				ejt2.execute("delete from eventHandlers");
+				ejt2.execute("delete from scripts");
 
-						ejt2.execute("delete from pointValues");
-						ejt2.execute("delete from maintenanceEvents");
-						ejt2.execute("delete from mailingLists");
-						ejt2.execute("delete from compoundEventDetectors");
+				ejt2.execute("delete from pointValues");
+				ejt2.execute("delete from maintenanceEvents");
+				ejt2.execute("delete from mailingLists");
+				ejt2.execute("delete from compoundEventDetectors");
 
-						ejt2.execute("delete from users");
+				ejt2.execute("delete from users");
 
-						ejt2.execute("delete from publishers");
+				ejt2.execute("delete from publishers");
 
-						ejt2.execute("delete from dataPointUsers");
-						ejt2.execute("delete from dataSourceUsers");
+				ejt2.execute("delete from dataPointUsers");
+				ejt2.execute("delete from dataSourceUsers");
 
-						ejt2.execute("delete from dataPoints");
-						ejt2.execute("delete from dataSources");
+				ejt2.execute("delete from dataPoints");
+				ejt2.execute("delete from dataSources");
 
-					}
-				});
+			}
+		});
 
 	}
 
@@ -323,10 +311,8 @@ public class SystemSettingsDao extends BaseDao {
 					dbName = new String(rs.getString("DATABASE()"));
 				}
 				rs.close();
-				rs = stmt
-						.executeQuery("SELECT sum( data_length + index_length ) / 1024 / 1024 \"size\" "
-								+ "FROM information_schema.TABLES where table_schema=\""
-								+ dbName + "\";");
+				rs = stmt.executeQuery("SELECT sum( data_length + index_length ) / 1024 / 1024 \"size\" "
+						+ "FROM information_schema.TABLES where table_schema=\"" + dbName + "\";");
 
 				while (rs.next()) {
 					size.add(Math.round(Double.parseDouble(rs.getString("size")) * 100) / 100d);

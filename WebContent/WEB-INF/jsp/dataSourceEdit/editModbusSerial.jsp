@@ -65,12 +65,12 @@
 <div id="warningContainer">
 	<div id="warning">
 		<h1>Caution!</h1>
-		<p>Modbus Serial communication can be unstable in this version of ScadaBR-EF</p>
+		<p>Modbus Serial communication can be unstable in this version of ScadaBR</p>
 		<p>Use this data source at your own risk or go back</p>
 		
 		<p style="margin: 40px;"></p>
 		
-		<p class="smallItalic">A comunica&ccedil;&atilde;o Modbus Serial pode ser inst&aacute;vel nesta vers&atilde;o do ScadaBR-EF</p>
+		<p class="smallItalic">A comunica&ccedil;&atilde;o Modbus Serial pode ser inst&aacute;vel nesta vers&atilde;o do ScadaBR</p>
 		<p class="smallItalic">Use este data source por sua conta e risco ou retorne &agrave; p&aacute;gina anterior</p>
 	</div>
 	<input id="disableWarning" type="checkbox"><label>Don't show this warning again</label>

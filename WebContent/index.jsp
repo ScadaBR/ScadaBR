@@ -18,10 +18,10 @@
 --%>
 <html>
 <head>
-  <title>ScadaBR (powered by Mango)</title>
+  <title>ScadaBR</title>
   <meta http-equiv="content-type" content="application/xhtml+xml;charset=utf-8"/>
   <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="Copyright" content="&copy;©2009-2012 Fundação Certi, MCA Sistemas, Unis Sistemas, Conetec, Todos os direitos reservados."/>
+  <meta name="Copyright" content="©2009-present Fundação Certi, MCA Sistemas, Unis Sistemas, Conetec, Todos os direitos reservados."/>
   <meta name="DESCRIPTION" content="ScadaBR Software"/>
   <meta name="KEYWORDS" content="ScadaBR Software"/>
   <link href="resources/common.css" type="text/css" rel="stylesheet"/>
@@ -30,7 +30,7 @@
 </head>
 <body>
 <script language="JavaScript">window.location="login.htm";</script>
-<%--<a style="font-size: 13px; color: #804000; font-family: Verdana, Arial, Helvetica, sans-serif;" href="login.htm">ScadaBR (powered by Mango)</a>--%>
-<a style="font-size: 13px; color: #414042 font-family: Verdana, Arial, Helvetica, sans-serif;" href="login.htm">ScadaBR (powered by Mango)</a>
+<%--<a style="font-size: 13px; color: #804000; font-family: Verdana, Arial, Helvetica, sans-serif;" href="login.htm">ScadaBR</a>--%>
+<a style="font-size: 13px; color: #414042 font-family: Verdana, Arial, Helvetica, sans-serif;" href="login.htm">ScadaBR</a>
 </body>
 </html>

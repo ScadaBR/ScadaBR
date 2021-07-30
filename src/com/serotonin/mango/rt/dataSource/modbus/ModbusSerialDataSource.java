@@ -18,6 +18,9 @@
  */
 package com.serotonin.mango.rt.dataSource.modbus;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 import com.serotonin.io.serial.SerialParameters;
 import com.serotonin.mango.rt.dataSource.DataSourceRT;
 import com.serotonin.mango.vo.dataSource.modbus.ModbusSerialDataSourceVO;
@@ -30,6 +33,7 @@ import com.serotonin.web.i18n.LocalizableMessage;
 import gnu.io.NoSuchPortException;
 
 public class ModbusSerialDataSource extends ModbusDataSource {
+	private final Log LOG = LogFactory.getLog(ModbusDataSource.class);
 	private final ModbusSerialDataSourceVO configuration;
 	ModbusMaster modbusMaster;
 
@@ -81,6 +85,7 @@ public class ModbusSerialDataSource extends ModbusDataSource {
 
 	@Override
 	protected LocalizableMessage getLocalExceptionMessage(Exception e) {
+		LOG.trace("Modbus Serial exception: " + e);
 		if (e instanceof ModbusInitException) {
 			Throwable cause = e.getCause();
 			if (cause instanceof NoSuchPortException)
