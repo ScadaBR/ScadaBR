@@ -89,6 +89,7 @@ import br.org.scadabr.view.component.LinkComponent;
 import br.org.scadabr.view.component.ScriptButtonComponent;
 import br.org.scadabr.vo.scripting.ScriptVO;
 import br.org.scadabr.vo.usersProfiles.UsersProfileVO;
+import br.org.scadabr.workarounds.ViewManager;
 
 /**
  * This class is so not threadsafe. Do not use class fields except for the
@@ -158,8 +159,8 @@ public class ViewDwr extends BaseDwr {
 	}
 
 	/**
-	 * Retrieves point state for all points on a given view. This is the
-	 * monitoring version of the method. See below for the view editing version.
+	 * Retrieves point state for all points on a given view. This is the monitoring
+	 * version of the method. See below for the view editing version.
 	 * 
 	 * @param viewId
 	 * @return
@@ -168,6 +169,17 @@ public class ViewDwr extends BaseDwr {
 	public List<ViewComponentState> getViewPointData(boolean edit) {
 		User user = Common.getUser();
 		return getViewPointData(user, user.getView(), edit);
+	}
+
+	public List<ViewComponentState> getViewPointData(boolean edit, int viewId) {
+		User user = Common.getUser();
+
+		View view = user.getView();
+		if (!edit)
+			view = ViewManager.getView(viewId);
+
+		Permissions.ensureViewPermission(user, view);
+		return getViewPointData(user, view, edit);
 	}
 
 	private List<ViewComponentState> getViewPointData(User user, View view, boolean edit) {
@@ -467,8 +479,8 @@ public class ViewDwr extends BaseDwr {
 	}
 
 	/**
-	 * Allows the setting of a given data point. Overrides BaseDwr to resolve
-	 * the point view id.
+	 * Allows the setting of a given data point. Overrides BaseDwr to resolve the
+	 * point view id.
 	 * 
 	 * @param pointId
 	 * @param valueStr

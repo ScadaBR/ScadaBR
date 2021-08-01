@@ -206,7 +206,12 @@ mango.view.anon.setPoint = function(pointId, viewComponentId, value) {
 mango.view.initNormalView = function() {
     mango.view.setPoint = mango.view.norm.setPoint;
     // Tell the long poll request that we're interested in view data.
-    mango.longPoll.pollRequest.view = true;
+	mango.longPoll.pollRequest.view = true;
+	
+	// Specify view Id
+	mango.longPoll.pollRequest.viewId = 0;
+	if (window.location.href.includes("viewId="))
+		mango.longPoll.pollRequest.viewId = parseInt(window.location.href.match(/viewId=(\d*)[^\d]?/)[1]);
 };
 
 mango.view.norm = {};
