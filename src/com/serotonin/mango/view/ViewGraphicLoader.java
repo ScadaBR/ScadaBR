@@ -54,7 +54,7 @@ public class ViewGraphicLoader {
 		for (File dir : dirs) {
 			try {
 				LOG.trace("Name: " + dir.getName());
-				if (dir.isDirectory())
+				if (dir.isDirectory() && !dir.getName().equals("_dynamicScripts"))
 					loadDirectory(dir, "");
 			} catch (Exception e) {
 				LOG.warn("Failed to load image set at " + dir, e);
