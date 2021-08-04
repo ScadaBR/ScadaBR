@@ -69,10 +69,15 @@ import com.serotonin.web.dwr.MethodFilter;
 import com.serotonin.web.i18n.I18NUtils;
 import com.serotonin.web.i18n.LocalizableMessage;
 
+import br.org.scadabr.workarounds.ViewGarbageCollector;
+
 public class MiscDwr extends BaseDwr {
 	public static final Log LOG = LogFactory.getLog(MiscDwr.class);
 	private static final String LONG_POLL_DATA_KEY = "LONG_POLL_DATA";
 	private static final String LONG_POLL_DATA_TIMEOUT_KEY = "LONG_POLL_DATA_TIMEOUT";
+
+	private static final int PURGE_VIEWS_ITERATIONS = 20;
+	private static int purgeViewsCount = 0;
 
 	private final WatchListDwr watchListDwr = new WatchListDwr();
 	private final DataPointDetailsDwr dataPointDetailsDwr = new DataPointDetailsDwr();
@@ -271,6 +276,11 @@ public class MiscDwr extends BaseDwr {
 	public Map<String, Object> initializeLongPoll(int pollSessionId, LongPollRequest request) {
 		LongPollData data = getLongPollData(pollSessionId, true);
 		data.setRequest(request);
+
+		// Workaround to clear old views from the "ViewManager" class
+		ViewGarbageCollector vgc = new ViewGarbageCollector();
+		vgc.start();
+
 		return doLongPoll(pollSessionId);
 	}
 
@@ -290,6 +300,15 @@ public class MiscDwr extends BaseDwr {
 		long expireTime = System.currentTimeMillis() + 60000; // One minute
 		LongPollState state = data.getState();
 		int waitTime = SystemSettingsDao.getIntValue(SystemSettingsDao.UI_PERFORAMANCE);
+
+		// Workaround to clear old views from the "ViewManager" class
+		if (purgeViewsCount < PURGE_VIEWS_ITERATIONS) {
+			purgeViewsCount++;
+		} else {
+			purgeViewsCount = 0;
+			ViewGarbageCollector vgc = new ViewGarbageCollector();
+			vgc.start();
+		}
 
 		// For users that log in on multiple machines (or browsers), reset the
 		// last alarm timestamp so that it always
@@ -377,10 +396,16 @@ public class MiscDwr extends BaseDwr {
 				LOG.trace("View - ");
 
 				List<ViewComponentState> newStates;
-				if (pollRequest.getAnonViewId() > 0)
+				if (pollRequest.getAnonViewId() > 0) {
 					newStates = viewDwr.getViewPointDataAnon(pollRequest.getAnonViewId());
-				else
+				} else if (pollRequest.getViewId() != 0) {
+					newStates = viewDwr.getViewPointData(pollRequest.isViewEdit(), pollRequest.getViewId());
+				} else if (pollRequest.getViewId() == 0) {
+					pollRequest.setViewId(user.getView().getId());
+					newStates = viewDwr.getViewPointData(pollRequest.isViewEdit(), pollRequest.getViewId());
+				} else {
 					newStates = viewDwr.getViewPointData(pollRequest.isViewEdit());
+				}
 				List<ViewComponentState> differentStates = new ArrayList<ViewComponentState>();
 				LOG.trace("Got ViewPointData - ");
 
@@ -464,6 +489,7 @@ public class MiscDwr extends BaseDwr {
 		LOG.trace("<<<<<<<<< Responding - ");
 		// LOG.debug("response: " + response.toString());
 		return response;
+
 	}
 
 	public void terminateLongPoll(int pollSessionId) {
@@ -471,6 +497,10 @@ public class MiscDwr extends BaseDwr {
 	}
 
 	public static void terminateLongPollImpl(LongPollData longPollData) {
+		// Workaround to clear old views from the "ViewManager" class
+		ViewGarbageCollector vgc = new ViewGarbageCollector();
+		vgc.start();
+
 		LongPollRequest request = longPollData.getRequest();
 		if (request == null)
 			return;
@@ -581,5 +611,9 @@ public class MiscDwr extends BaseDwr {
 				notifyLongPollImpl(lpd.getRequest());
 			}
 		}
+	}
+
+	private int getFirstUserView(int userId) {
+		return 1;
 	}
 }

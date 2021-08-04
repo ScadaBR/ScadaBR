@@ -42,6 +42,7 @@ import com.serotonin.mango.vo.permission.Permissions;
 
 import br.org.scadabr.db.dao.UsersProfileDao;
 import br.org.scadabr.vo.usersProfiles.UsersProfileVO;
+import br.org.scadabr.workarounds.ViewManager;
 
 public class ViewsController extends ParameterizableViewController {
 	private Log LOG = LogFactory.getLog(ViewsController.class);
@@ -119,6 +120,7 @@ public class ViewsController extends ParameterizableViewController {
 			model.put("currentView", currentView);
 			model.put("owner", currentView.getUserAccess(user) == ShareUser.ACCESS_OWNER);
 			user.setView(currentView);
+			ViewManager.addView(currentView);
 
 			// Define if user can add new views
 			// LOG.error("userAddedViews: " +

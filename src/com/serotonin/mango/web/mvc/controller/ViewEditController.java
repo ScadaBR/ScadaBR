@@ -44,6 +44,8 @@ import com.serotonin.mango.web.mvc.form.ViewEditForm;
 import com.serotonin.util.ValidationUtils;
 import com.serotonin.web.dwr.DwrResponseI18n;
 
+import br.org.scadabr.workarounds.ViewManager;
+
 public class ViewEditController extends SimpleFormRedirectController {
 	private static final String SUBMIT_UPLOAD = "upload";
 	private static final String SUBMIT_CLEAR_IMAGE = "clearImage";
@@ -192,6 +194,10 @@ public class ViewEditController extends SimpleFormRedirectController {
 
 			view.setUserId(Common.getUser(request).getId());
 			viewDao.saveView(view);
+
+			// Update View in View Manager (ScadaBR workarounds)
+			ViewManager.updateView(view);
+
 			return getSuccessRedirectView("viewId=" + form.getView().getId());
 		}
 
