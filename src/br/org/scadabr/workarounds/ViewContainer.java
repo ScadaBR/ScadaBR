@@ -21,12 +21,16 @@ public class ViewContainer {
 	public void setView(View view) {
 		this.view = view;
 		this.viewId = view.getId();
-		this.lastAccess = System.currentTimeMillis();
+		updateLastAccess();
 	}
 
 	public View getView() {
-		this.lastAccess = System.currentTimeMillis();
+		updateLastAccess();
 		return this.view;
+	}
+
+	public void updateLastAccess() {
+		this.lastAccess = System.currentTimeMillis();
 	}
 
 	public long getLastAccess() {

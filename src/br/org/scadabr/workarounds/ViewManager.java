@@ -20,10 +20,27 @@ public abstract class ViewManager {
 	private static final long TIME_BETWEEN_PURGES = 60_000;
 	private static long lastPurge = System.currentTimeMillis();
 
+	// Adds a new View Container, if not exists
 	public static void addView(View view) {
 		if (view != null) {
 			ViewContainer container = new ViewContainer(view);
 			if (!views.contains(container)) {
+				views.add(container);
+			} else {
+				int index = views.indexOf(container);
+				views.get(index).updateLastAccess();
+			}
+		}
+	}
+
+	// Updates View in a View Container, or creates a new View Container
+	public static void updateView(View view) {
+		if (view != null) {
+			ViewContainer container = new ViewContainer(view);
+			if (views.contains(container)) {
+				int index = views.indexOf(container);
+				views.get(index).setView(view);
+			} else {
 				views.add(container);
 			}
 		}
