@@ -18,6 +18,8 @@
  */
 package com.serotonin.mango.rt.dataSource.modbus;
 
+import java.io.IOException;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -36,6 +38,7 @@ public class ModbusSerialDataSource extends ModbusDataSource {
 	private final Log LOG = LogFactory.getLog(ModbusDataSource.class);
 	private final ModbusSerialDataSourceVO configuration;
 	ModbusMaster modbusMaster;
+	SerialPortWrapperImpl serialWrapper;
 
 	private int timeoutPort = 10000;
 
@@ -62,14 +65,14 @@ public class ModbusSerialDataSource extends ModbusDataSource {
 		params.setStopBits(configuration.getStopBits());
 		params.setParity(configuration.getParity());
 
-		SerialPortWrapperImpl wrapper = new SerialPortWrapperImpl(params.getCommPortId(), params.getBaudRate(),
+		serialWrapper = new SerialPortWrapperImpl(params.getCommPortId(), params.getBaudRate(),
 				params.getFlowControlIn(), params.getFlowControlOut(), params.getDataBits(), params.getStopBits(),
 				params.getParity(), timeoutPort);
 
 		if (configuration.getEncoding() == EncodingType.ASCII)
-			modbusMaster = new ModbusFactory().createAsciiMaster(wrapper);
+			modbusMaster = new ModbusFactory().createAsciiMaster(serialWrapper);
 		else
-			modbusMaster = new ModbusFactory().createRtuMaster(wrapper);
+			modbusMaster = new ModbusFactory().createRtuMaster(serialWrapper);
 
 		super.initialize(modbusMaster);
 
@@ -77,10 +80,22 @@ public class ModbusSerialDataSource extends ModbusDataSource {
 
 	@Override
 	protected void doPoll(long time) {
-		if (modbusMaster == null)
+		if (modbusMaster == null || !modbusMaster.isInitialized() || serialWrapper == null)
 			initialize();
 
 		super.doPoll(time);
+	}
+
+	private void disconnect() {
+		modbusMaster.destroy();
+
+		try {
+			serialWrapper.close();
+		} catch (Exception e) {
+			// No op
+		}
+
+		serialWrapper = null;
 	}
 
 	@Override
@@ -95,4 +110,18 @@ public class ModbusSerialDataSource extends ModbusDataSource {
 		return DataSourceRT.getExceptionMessage(e);
 	}
 
+	@Override
+	public void receivedException(Exception e) {
+		LOG.debug("Modbus exception: " + e.getLocalizedMessage());
+		// eventRaised = true; // DataPoint protection against invalid values.
+		// If it´s used, DS with unstable connections won´t communicate at all!
+		if (e instanceof IOException) {
+			raiseEvent(DATA_SOURCE_EXCEPTION_EVENT, System.currentTimeMillis(), true,
+					new LocalizableMessage("event.modbus.ioException"));
+			disconnect();
+		} else {
+			raiseEvent(DATA_SOURCE_EXCEPTION_EVENT, System.currentTimeMillis(), true,
+					new LocalizableMessage("event.modbus.master", e.getMessage()));
+		}
+	}
 }

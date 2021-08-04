@@ -19,6 +19,7 @@
 <%@page import="com.serotonin.modbus4j.serial.SerialMaster"%>
 <%@ include file="/WEB-INF/jsp/include/tech.jsp" %>
 <%@page import="com.serotonin.mango.vo.dataSource.modbus.ModbusSerialDataSourceVO"%>
+<%@page import="com.serotonin.mango.Common"%>
 
 <!-- Temporary warning about Modbus Serial implementation -->
 <script src="resources/shortcut.js"></script>
@@ -39,9 +40,12 @@
 		// Disable warnings
 		if (document.getElementById("disableWarning") && document.getElementById("disableWarning").checked)
 			setCookie("modbusWarning", "disabled");
-
-		document.getElementById("warningContainer").remove();
-		document.getElementById("warningStyles").remove();
+		try {
+			document.getElementById("warningContainer").remove();
+			document.getElementById("warningStyles").remove();
+		} catch (e) {
+			// Do nothing
+		}
 	}
 		
 	window.onload = showOpsMessage;
@@ -109,6 +113,23 @@
               $get("flowControlOut"), $get("dataBits"), $get("stopBits"), $get("parity"), $get("encoding"),
               $get("echo"), $get("concurrency"), saveDataSourceCB);
   }
+  
+  function getCommPort() {
+	  DataSourceEditDwr.getModbusSerialPort(getCommPortImpl);
+  }
+  
+  function getCommPortImpl(port) {
+	  var htmlSelect = document.getElementById("commPortId");
+	  if (port && !htmlSelect.querySelector()) {
+		  var option = document.createElement("option");
+		  option.value = port;
+		  option.innerHTML = port;
+		  htmlSelect.appendChild(option);
+		  htmlSelect.value = port;
+	  }
+  }
+  
+  dojo.addOnLoad(getCommPort);
 </script>
 
 <tr>

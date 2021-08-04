@@ -18,7 +18,6 @@
  */
 package com.serotonin.mango.rt.dataSource.modbus;
 
-import java.io.IOException;
 import java.net.ConnectException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -472,12 +471,7 @@ abstract public class ModbusDataSource extends PollingDataSource implements Mess
 		LOG.debug("Modbus exception: " + e.getLocalizedMessage());
 		// eventRaised = true; // DataPoint protection against invalid values.
 		// If it´s used, DS with unstable connections won´t communicate at all!
-		if (e instanceof IOException) {
-			raiseEvent(DATA_SOURCE_EXCEPTION_EVENT, System.currentTimeMillis(), true,
-					new LocalizableMessage("event.modbus.ioException"));
-		} else {
-			raiseEvent(DATA_SOURCE_EXCEPTION_EVENT, System.currentTimeMillis(), true,
-					new LocalizableMessage("event.modbus.master", e.getMessage()));
-		}
+		raiseEvent(DATA_SOURCE_EXCEPTION_EVENT, System.currentTimeMillis(), true,
+				new LocalizableMessage("event.modbus.master", e.getMessage()));
 	}
 }

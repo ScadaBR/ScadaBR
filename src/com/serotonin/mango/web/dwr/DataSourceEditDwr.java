@@ -596,6 +596,11 @@ public class DataSourceEditDwr extends DataSourceListDwr {
 		return response;
 	}
 
+	public String getModbusSerialPort() {
+		ModbusSerialDataSourceVO ds = (ModbusSerialDataSourceVO) Common.getUser().getEditDataSource();
+		return ds.getCommPortId();
+	}
+
 	private ModbusMaster createModbusSerialMaster(int timeout, int retries, String commPortId, int baudRate,
 			int flowControlIn, int flowControlOut, int dataBits, int stopBits, int parity, String encoding,
 			int concurrency) throws Exception {
