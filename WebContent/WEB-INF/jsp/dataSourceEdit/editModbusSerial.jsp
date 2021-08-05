@@ -120,7 +120,7 @@
   
   function getCommPortImpl(port) {
 	  var htmlSelect = document.getElementById("commPortId");
-	  if (port && !htmlSelect.querySelector()) {
+	  if (port && !htmlSelect.querySelector("option[value='" + port + "']")) {
 		  var option = document.createElement("option");
 		  option.value = port;
 		  option.innerHTML = port;
