@@ -1,43 +1,57 @@
 # ScadaBR
 
-### Você pode baixar a versão mais atual do ScadaBR [aqui](https://github.com/ScadaBR/ScadaBR/releases/latest). .
-
 ## Sobre
-O ScadaBR pretende oferecer todas as funcionalidades de um sistema SCADA tradicional. Este tipo de software (Supervisory Control and Data Acquisition, na sigla em inglês) existe desde o final dos anos 60, e é a peça fundamental em qualquer tipo de aplicação computadorizada que envolva máquinas, controladores programáveis (CLP´s), acionamentos eletrônicos e sensores.
+O ScadaBR é um software _open source_ que oferece todas as funcionalidades de um sistema SCADA (Supervisory Control and Data Acquisition, na sigla em inglês) completo. Softwares do tipo SCADA  existem desde o final dos anos 60, e são peça fundamental na automação de processos que envolvam máquinas, controladores lógicos programáveis (CLPs), acionamentos eletrônicos e sensores.
+
+Entre os principais recursos do ScadaBR estão:
+- Aquisição de dados em mais de 20 protocolos como: Modbus TCP/IP e Serial, OPC, DNP3, IEC, Serial ASCII e HTTP
+- Visualização de dados (variáveis ou "tags") em tempo real
+- Construção de telas gráficas (HMI ou Sinópticos)
+- Engine de Alarmes e Eventos parametrizáveis
+- Alarmes sonoros
+- Acesso via browser
+- Engine de scripts para controle, automação, geração de "receitas", etc.
+
+O ScadaBR é um software open source e 100% gratuito. Com o ScadaBR, o único limite é a sua criatividade.
+
+Você pode baixar a versão mais atual do ScadaBR [aqui](https://github.com/ScadaBR/ScadaBR/releases/latest).
 
 ## Instalação
-O ScadaBR tem instaladores para Windows e Linux, obtenha-os na [página dos releases](https://github.com/ScadaBR/ScadaBR/releases/latest/).
+#### Instalação automática
+O ScadaBR tem instaladores oficiais para Windows e Linux. Obtenha-os na [página dos releases](https://github.com/ScadaBR/ScadaBR/releases/latest/).
 
-Se você quiser ou precisar realizar uma instalação manual, siga estes passos:
-- Instale o Java (ou [OpenJDK](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=hotspot)) 8
-- Instale o [Tomcat 9.0][Tomcat 9](https://tomcat.apache.org/download-90.cgi)
+#### Instalação manual
+Se você quiser (ou precisar) realizar uma instalação manual, siga estes passos:
+- Instale o Java 8 (ou [OpenJDK 8](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=hotspot))
+- Instale o [Tomcat 9](https://tomcat.apache.org/download-90.cgi)
 - Faça o download do [último release](https://github.com/ScadaBR/ScadaBR/releases/latest/)
 - Extraia o arquivo `.war` e copie a pasta extraída para dentro da pasta `webapps/`, no Tomcat
 - Reinicie o Tomcat
 
-Obs.: O banco de dados usado por padrão é o Derby. Caso você queira utilizar outro banco de dados (como o MySql) a configuração a ser realizada é a mesma que seria feita para outras versões do ScadaBR (isto é, editar o arquivo `/WEB-INF/classes/env.properties`) e instale o ConnectorJ referente a seu gerenciador de Banco de dados.
+Obs.: O banco de dados usado por padrão é o Derby. Caso você queira utilizar outro banco de dados (como o MySql/MariaDB) a configuração a ser realizada consiste em editar o arquivo `/WEB-INF/classes/env.properties` e instalar o ConnectorJ referente a seu gerenciador de Banco de dados.
 
-## O ScadaBR é estável?
-Em teoria, sim. Uma vez que o foco desse projeto é melhorar o front-end do ScadaBR, poucas foram as alterações no código Java em si. Portanto, o ScadaBR deveria ser tão estável quanto o ScadaBR 1.1 CE, no qual foi baseado. Entretanto, contudo, Não foi testado todas as funcionalidades desta versão. 
+#### Requisitos de instalação
+O ScadaBR é um software multiplataforma baseado em Java/Tomcat. Qualquer sistema operacional compatível com o Java 8 e Tomcat 9 está apto para rodar o ScadaBR. Note que os requisitos de hardware podem variar dependendo das suas demandas de uso do ScadaBR. Note ainda que o instalador para Windows suporta apenas a instalação em Windows Vista ou mais recente.
 
-## Situação atual do ScadaBR 
+## ScadaBR e Scada-LTS
+
+[Descrever relação entre ScadaBR e Scada-LTS...]
+
+A tabela abaixo mostra os principais recursos presentes nas diferentes versões do ScadaBR e do Scada-LTS
 
 Recursos   | ScadaBR 1.0 | ScadaBR 1.1 | ScadaBR 1.2 | Scada-LTS
 ---------- | ----------- | ----------- | ---------- | ---------
-Versão do Java | 6 | 7 ou 8 (depende da compilação) | 8 | 11
+Versão do Java | 6 | 7 ou 8 (depende da compilação) | 8 | 8 [(ou 11)](https://github.com/SCADA-LTS/Scada-LTS/issues/1822)
+Versão do Tomcat | 6 | 7 | 9 | 7 [(ou 8)](https://github.com/SCADA-LTS/Scada-LTS/issues/1822)
 Página "perfil de usuário" | Não possui | Possui | Possui | Possui
 API REST | Não possui | Não possui | Não possui | Possui
-Desenvolvimento ativo | Não | Não | Não (apenas lançamentos eventuais) | Sim
-Suporte a Modbus Serial | Sim | Não | Sim | Não (mas será implementado no futuro)
-Instaladores | Windows, Linux (não oficial), instalação manual | Sem instaladores oficiais, apenas instalação manual ou instaladores não oficiais | Windows, Linux (inclusive Raspberry), instalação manual | Instalação via Docker ou instalação manual
+Suporte a Modbus Serial | Sim | Não | Sim | Não (será implementado no futuro)
+Instaladores | Windows, Linux (não oficial), instalação manual | Sem instaladores oficiais | Windows, Linux (inclusive Raspberry), instalação manual | Instalação via Docker ou instalação manual
 
+## Ajuda e suporte
+No [Fórum do ScadaBR](forum.scadabr.com.br) você pode se informar, aprender e tirar dúvidas sobre como usar o ScadaBR. Visite também o [canal do YouTube do ScadaBR](https://www.youtube.com/channel/UC42J9rtRGzqwmj5s3BJZG6Q).
 
-## Em que o ScadaBR roda?
-Eu estou executando com sucesso o ScadaBR no Linux Mint 19.1 (baseado no Ubuntu 18.04), Ubuntu 20.04, Raspberry PI 3 usando raspbian com OpenJDK 8 (equivale ao Java 8) e Tomcat 8 e 9.
-O arquivo **.war** foi compilado no Eclipse, versão 2020-12 (4.18.0).
-Os códigos-fontes foram copiados do SourceForge e agora estão aqui no GitHub. 
-
+Você ou sua empresa precisa de **suporte comercial para o ScadaBR**? Você pode entrar conferir nosso [curso oficial](http://www.scadabr.com.br/curso-scadabr/) ou entrar em contato com um [integrador do ScadaBR](http://forum.scadabr.com.br/c/integradores).
 
 ## Bugs conhecidos
-- Foram reportado problemas com o OpenJDK 8 na hora de enviar e-mails. Caso você receba um alarme de erro contendo a mensagem `javax.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)` edite o arquivo `java.security` (que deve estar em `$JRE/lib/security/java.security`, no meu caso estava em `/etc/java-8-openjdk/security/java.security`) e, na opção `jdk.tls.disabledAlgorithms` remova `TLSv1` e `TLSv1.1` da lista.
-- Você só pode abrir uma Representação Gráfica por vez no mesmo navegador. Essa limitação, herdada do ScadaBR, é bastante complexa, infelizmente, Caso precise de várias telas, utilize Navegadores diferentes.
+- Você pode enfrentar problemas com o OpenJDK 8 na hora de enviar e-mails. Caso você receba um alarme de erro contendo a mensagem `javax.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)` edite o arquivo `java.security`, que deve estar em `${JRE}/lib/security/java.security` (no qual `${JRE}` é o caminho para o seu Java Runtime Environment). Neste arquivo, na opção `jdk.tls.disabledAlgorithms` remova `TLSv1` e `TLSv1.1` da lista.
