@@ -1,4 +1,5 @@
-# ScadaBR
+# ScadaBR - Open source SCADA
+![ScadaBR logo](https://user-images.githubusercontent.com/82009729/128575518-fcef7deb-9be0-4ef9-8946-5c189a6ac411.png)
 
 Você pode baixar a versão mais atual do ScadaBR [aqui](https://github.com/ScadaBR/ScadaBR/releases/latest).
 
@@ -51,9 +52,12 @@ Suporte a Modbus Serial | Sim | Não | Sim | Não (será implementado no futuro)
 Instaladores | Windows, Linux (não oficial), instalação manual | Sem instaladores oficiais | Windows, Linux (inclusive Raspberry), instalação manual | Instalação via Docker ou instalação manual
 
 ## Suporte
-No [Fórum do ScadaBR](forum.scadabr.com.br) você pode se informar, aprender e tirar dúvidas sobre como usar o ScadaBR. Visite também o [canal do YouTube do ScadaBR](https://www.youtube.com/channel/UC42J9rtRGzqwmj5s3BJZG6Q).
+No [Fórum do ScadaBR](forum.scadabr.com.br) você pode se informar, aprender e tirar dúvidas sobre como usar o ScadaBR. Visite também nosso [site](http://www.scadabr.com.br/) e nosso [canal no YouTube](https://www.youtube.com/channel/UC42J9rtRGzqwmj5s3BJZG6Q).
 
-Você ou sua empresa precisa de **suporte comercial para o ScadaBR**? Você pode entrar conferir nosso [curso oficial](http://www.scadabr.com.br/curso-scadabr/) ou entrar em contato com um [integrador do ScadaBR](http://forum.scadabr.com.br/c/integradores).
+Você ou sua empresa precisam de **suporte comercial para o ScadaBR**? Você pode entrar conferir nosso [curso oficial](http://www.scadabr.com.br/curso-scadabr/) ou entrar em contato com um [integrador do ScadaBR](http://forum.scadabr.com.br/c/integradores).
 
 ## Bugs conhecidos
 - Você pode enfrentar problemas com o OpenJDK 8 na hora de enviar e-mails. Caso você receba um alarme de erro contendo a mensagem `javax.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)` edite o arquivo `java.security`, que deve estar em `${JRE}/lib/security/java.security` (no qual `${JRE}` é o caminho para o seu Java Runtime Environment). Neste arquivo, na opção `jdk.tls.disabledAlgorithms` remova `TLSv1` e `TLSv1.1` da lista.
+
+## Licença
+O ScadaBR é um software livre e open source, disponibilizado sob [GPL 3+](https://www.gnu.org/licenses/gpl-3.0.en.html).
