@@ -33,7 +33,7 @@
   <!-- Meta -->
   <meta http-equiv="content-type" content="application/xhtml+xml;charset=utf-8"/>
   <meta http-equiv="Content-Style-Type" content="text/css" />
-  <meta name="Copyright" content="ScadaBR &copy;ï¿½2009-2011 FundaÃ§Ã£o Certi, MCA Sistemas, Unis Sistemas, Conetec, Todos os direitos reservados."/>
+  <meta name="Copyright" content="ScadaBR (c) 2009-2011 Fundação Certi, MCA Sistemas, Unis Sistemas, Conetec, Todos os direitos reservados."/>
   <meta name="DESCRIPTION" content="ScadaBR Software"/>
   <meta name="KEYWORDS" content="ScadaBR Software"/>
   
@@ -45,14 +45,13 @@
   
   <!-- Scripts -->
   <script type="text/javascript">var djConfig = { isDebug: false, extraLocale: ['en-us', 'nl', 'nl-nl', 'ja-jp', 'fi-fi', 'sv-se', 'zh-cn', 'zh-tw','xx'] };</script>
-  <!-- script type="text/javascript" src="http://o.aolcdn.com/dojo/0.4.2/dojo.js"></script -->
   <script type="text/javascript" src="resources/dojo/dojo.js" djConfig="parseOnLoad: true, isDebug: true"></script>
   <script type="text/javascript" src="dwr/engine.js"></script>
   <script type="text/javascript" src="dwr/util.js"></script>
   <script type="text/javascript" src="dwr/interface/MiscDwr.js"></script>
   <script type="text/javascript" src="resources/soundmanager2-nodebug-jsmin.js"></script>
   <script type="text/javascript" src="resources/common.js"></script>
-  <script type="text/javascript" src="resources/fuscabr/fuscabr.js"></script>
+  <script type="text/javascript" src="resources/fuscabr/fuscabr.js" defer></script>
   
   <c:forEach items="${dwr}" var="dwrname">
     <script type="text/javascript" src="dwr/interface/${dwrname}.js"></script></c:forEach>
@@ -208,7 +207,7 @@
 <table width="100%" cellspacing="0" cellpadding="0" border="0">
   <tr><td colspan="2">&nbsp;</td></tr>
   <tr>
-    <td colspan="2" class="footer" align="center">&copy;2009-2011 Funda&ccedil;&atilde;o Certi, MCA Sistemas, Unis Sistemas, Conetec. <fmt:message key="footer.rightsReserved"/></td>
+    <td colspan="2" class="footer" align="center">&copy;2009-present Funda&ccedil;&atilde;o Certi, MCA Sistemas, Unis Sistemas, Conetec. <fmt:message key="footer.rightsReserved"/></td>
   </tr>
 </table>
 <c:if test="${!empty onload}">

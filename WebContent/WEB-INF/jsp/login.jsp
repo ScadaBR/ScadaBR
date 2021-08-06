@@ -18,7 +18,12 @@
 --%>
 <%@ include file="/WEB-INF/jsp/include/tech.jsp" %>
 <tag:page onload="">
-	<script type="text/javascript" src="resources/can-autoplay.js"></script>
+	
+	<c:if test="${!empty sessionUser}">
+		<!-- User already logged in. Go home URL. -->
+		<script>goHomeUrl();</script>
+	</c:if>
+	
 	<script type="text/javascript">
 		function unsupportedWarning() {
 			$("warnings").style.top = "150px";
@@ -69,33 +74,46 @@
 			browserTested = true;
 		}
 		
-		// Audio autoplay detect
-		function hideAutoplayWarning() {
-			if (document.hidden)
-				setTimeout(hideAutoplayWarning, 2000);
-			else
-				setTimeout(function() {
-					$("autoplayDisabled").style.display = "none";
-				}, 3000);
-		}
+		dojo.addOnLoad(testBrowser);
+		
+	</script>
+	
+	<!-- Audio Autoplay detection -->
+	<script type="text/javascript" src="resources/can-autoplay.js"></script>
+	<script type="text/javascript">		
+		var autoplayRetries = 3;
 		
 		function detectAutoplay() {
 			canAutoplay.audio().then(({result}) => {
 				if (result === false) {
-					$("autoplayDisabled").style.display = "";
-					setTimeout(hideAutoplayWarning, 4000);
+					// Autoplay disabled
+					autoplayRetries -= 1;
+					if (autoplayRetries)
+						setTimeout(detectAutoplay, 500);
+					else
+						showAutoplayWarning();
 				}
 			});
 		}
 		
-		dojo.addOnLoad(testBrowser);
+		function showAutoplayWarning() {
+			$("autoplayDisabled").style.display = "";
+			hideAutoplayWarning(false);
+		}
+		
+		function hideAutoplayWarning(forceHide) {
+			if (forceHide)
+				$("autoplayDisabled").style.display = "none";
+			else if (document.hidden)
+				setTimeout(hideAutoplayWarning, 500);
+			else
+				setTimeout(function() {
+					$("autoplayDisabled").style.display = "none";
+				}, 10000);
+		}
+		
 		dojo.addOnLoad(detectAutoplay);
 	</script>
-	
-	<c:if test="${!empty sessionUser}">
-		<!-- User already logged in. Go home URL. -->
-		<script>goHomeUrl();</script>
-	</c:if>
 	
 	<!--[if lt IE 10]>
 		<script type="text/javascript">
@@ -255,7 +273,7 @@
 		}
 	</style>
 	
-	<div id="autoplayDisabled" style="display: none;" onclick="hideAutoplayWarning();">
+	<div id="autoplayDisabled" style="display: none;" onclick="hideAutoplayWarning(true);">
 		<div class="arrow"></div>
 		<div class="warning"><fmt:message key="login.autoplayDisabled"/></div>
 	</div>

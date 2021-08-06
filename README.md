@@ -1,12 +1,14 @@
 # ScadaBR
 
+Você pode baixar a versão mais atual do ScadaBR [aqui](https://github.com/ScadaBR/ScadaBR/releases/latest).
+
 ## Sobre
 O ScadaBR é um software _open source_ que oferece todas as funcionalidades de um sistema SCADA (Supervisory Control and Data Acquisition, na sigla em inglês) completo. Softwares do tipo SCADA  existem desde o final dos anos 60, e são peça fundamental na automação de processos que envolvam máquinas, controladores lógicos programáveis (CLPs), acionamentos eletrônicos e sensores.
 
 Entre os principais recursos do ScadaBR estão:
 - Aquisição de dados em mais de 20 protocolos como: Modbus TCP/IP e Serial, OPC, DNP3, IEC, Serial ASCII e HTTP
 - Visualização de dados (variáveis ou "tags") em tempo real
-- Construção de telas gráficas (HMI ou Sinópticos)
+- Construção de telas gráficas (HMI ou sinópticos)
 - Engine de Alarmes e Eventos parametrizáveis
 - Alarmes sonoros
 - Acesso via browser
@@ -14,28 +16,28 @@ Entre os principais recursos do ScadaBR estão:
 
 O ScadaBR é um software open source e 100% gratuito. Com o ScadaBR, o único limite é a sua criatividade.
 
-Você pode baixar a versão mais atual do ScadaBR [aqui](https://github.com/ScadaBR/ScadaBR/releases/latest).
-
 ## Instalação
 #### Instalação automática
-O ScadaBR tem instaladores oficiais para Windows e Linux. Obtenha-os na [página dos releases](https://github.com/ScadaBR/ScadaBR/releases/latest/).
+O ScadaBR possui instaladores oficiais para Windows e Linux. Obtenha-os na [página dos lançamentos](https://github.com/ScadaBR/ScadaBR/releases/latest/).
 
 #### Instalação manual
 Se você quiser (ou precisar) realizar uma instalação manual, siga estes passos:
 - Instale o Java 8 (ou [OpenJDK 8](https://adoptopenjdk.net/releases.html?variant=openjdk8&jvmVariant=hotspot))
 - Instale o [Tomcat 9](https://tomcat.apache.org/download-90.cgi)
-- Faça o download do [último release](https://github.com/ScadaBR/ScadaBR/releases/latest/)
+- Faça o download do [último lançamento](https://github.com/ScadaBR/ScadaBR/releases/latest/)
 - Extraia o arquivo `.war` e copie a pasta extraída para dentro da pasta `webapps/`, no Tomcat
 - Reinicie o Tomcat
 
-Obs.: O banco de dados usado por padrão é o Derby. Caso você queira utilizar outro banco de dados (como o MySql/MariaDB) a configuração a ser realizada consiste em editar o arquivo `/WEB-INF/classes/env.properties` e instalar o ConnectorJ referente a seu gerenciador de Banco de dados.
+Obs.: O banco de dados usado por padrão é o Derby. Caso você queira utilizar outro banco de dados (como o MySQL/MariaDB) a configuração a ser realizada consiste em editar o arquivo `/WEB-INF/classes/env.properties` e instalar o ConnectorJ referente a seu gerenciador de banco de dados.
 
 #### Requisitos de instalação
-O ScadaBR é um software multiplataforma baseado em Java/Tomcat. Qualquer sistema operacional compatível com o Java 8 e Tomcat 9 está apto para rodar o ScadaBR. Note que os requisitos de hardware podem variar dependendo das suas demandas de uso do ScadaBR. Note ainda que o instalador para Windows suporta apenas a instalação em Windows Vista ou mais recente.
+O ScadaBR é um software multiplataforma baseado em Java/Tomcat. Qualquer sistema operacional compatível com o Java 8 e Tomcat 9 está apto para rodar o ScadaBR. Note que os requisitos de hardware podem variar dependendo das suas demandas de uso do ScadaBR. Note também que o instalador para Windows suporta apenas a instalação em Windows Vista ou mais recente.
 
 ## ScadaBR e Scada-LTS
 
-[Descrever relação entre ScadaBR e Scada-LTS...]
+Em 2016 o ScadaBR se internacionalizou, dando origem ao projeto [Scada-LTS](https://github.com/SCADA-LTS/Scada-LTS). O Scada-LTS possui um ritmo de desenvolvimento intenso, com diversas melhorias implementadas e novas tecnologias sendo incorporadas à base de código.
+
+Atualmente, as versões do ScadaBR são baseadas no código-fonte da última versão open source do Mango M2M. Em breve, porém, lançaremos a série ScadaBR 2.x tendo como novo núcleo o Scada-LTS.
 
 A tabela abaixo mostra os principais recursos presentes nas diferentes versões do ScadaBR e do Scada-LTS
 
@@ -43,12 +45,12 @@ Recursos   | ScadaBR 1.0 | ScadaBR 1.1 | ScadaBR 1.2 | Scada-LTS
 ---------- | ----------- | ----------- | ---------- | ---------
 Versão do Java | 6 | 7 ou 8 (depende da compilação) | 8 | 8 [(ou 11)](https://github.com/SCADA-LTS/Scada-LTS/issues/1822)
 Versão do Tomcat | 6 | 7 | 9 | 7 [(ou 8)](https://github.com/SCADA-LTS/Scada-LTS/issues/1822)
-Página "perfil de usuário" | Não possui | Possui | Possui | Possui
+Suporte a "perfis de usuário" | Não possui | Possui | Possui | Possui
 API REST | Não possui | Não possui | Não possui | Possui
 Suporte a Modbus Serial | Sim | Não | Sim | Não (será implementado no futuro)
 Instaladores | Windows, Linux (não oficial), instalação manual | Sem instaladores oficiais | Windows, Linux (inclusive Raspberry), instalação manual | Instalação via Docker ou instalação manual
 
-## Ajuda e suporte
+## Suporte
 No [Fórum do ScadaBR](forum.scadabr.com.br) você pode se informar, aprender e tirar dúvidas sobre como usar o ScadaBR. Visite também o [canal do YouTube do ScadaBR](https://www.youtube.com/channel/UC42J9rtRGzqwmj5s3BJZG6Q).
 
 Você ou sua empresa precisa de **suporte comercial para o ScadaBR**? Você pode entrar conferir nosso [curso oficial](http://www.scadabr.com.br/curso-scadabr/) ou entrar em contato com um [integrador do ScadaBR](http://forum.scadabr.com.br/c/integradores).
