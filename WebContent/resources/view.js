@@ -464,7 +464,7 @@ mango.view.graphic.addCustomScript = function(source) {
 	if(!document.querySelector("script[src*='" + source + "']")) {
 		var newScript = document.createElement("script");
 		newScript.src = source;
-		document.querySelector("body > div[style*='padding:5px;']").appendChild(newScript);
+		document.querySelector("body > div#mainContent").appendChild(newScript);
 		// console.log(source + " added.");
 	}
 }

@@ -297,11 +297,11 @@
 	function validateUploadImage() {
 		var file = document.getElementById("backgroundImageMP").value;
 		var extension = file.slice(file.lastIndexOf(".") + 1).toLowerCase();
-		var search = ["gif", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png", "bmp", "dib"].indexOf(extension);
+		var search = ["gif", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png", "bmp", "dib", "svg"].indexOf(extension);
 		if ((search == -1) && (extension != "jsp")) {
 			// Image format invalid.
 			document.getElementById("backgroundImageMP").value = null;
-			alert("Invalid image format!\nSupported image formats are: JPG, PNG, BMP or GIF");
+			alert("Invalid image format!\nSupported image formats are: JPG, PNG, BMP, SVG or GIF");
 		} else if (extension == "jsp") {
 			// Fight XSS with easter eggs
 			document.getElementById("backgroundImageMP").value = null;

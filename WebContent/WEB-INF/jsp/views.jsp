@@ -22,6 +22,9 @@
 	
 	<script type="text/javascript">
 	
+	// The fatest way to disable fullscreen warning text
+	var disableFullscreenText = false;
+	
 	shortcut.add("Ctrl+Shift+F",function() {
 
 		setCookie("fullScreen","no");
@@ -35,6 +38,7 @@
 		
 	});
 	
+	// FUScaBR easter egg
 	shortcut.add("Ctrl+Alt+E", function() {
 		if (!document.getElementById("fuscabr-easter-egg"))
 			fuscabr.common.easterEgg();
@@ -112,17 +116,25 @@
 		document.getElementById('mainHeader').style.display = "none";
   	  	document.getElementById('subHeader').style.display = "none";
   	  	document.getElementById('graphical').style.display = "none";
+  	  	
+  	  if (!disableFullscreenText) {
   	  	dojo.lfx.html.fadeHide($(fsOut), 10000).play(); // Fade out
+  	  } else {
+  		document.getElementById('fsOut').style.display = "none";
+  	  }
   	  	
 	}
 	
 	function fullScreen(){
   	  	
-		document.getElementById('fsOut').style.display = "block";
 		document.getElementById('mainHeader').style.display = "none";
   	  	document.getElementById('subHeader').style.display = "none";
   	  	document.getElementById('graphical').style.display = "none";
-		dojo.lfx.html.fadeHide($(fsOut), 10000).play(); // Fade out
+		
+  	  	if (!disableFullscreenText) {
+  	  		document.getElementById('fsOut').style.display = "block";
+  	  		dojo.lfx.html.fadeHide($(fsOut), 10000).play(); // Fade out
+		}
 
   	  	setCookie("fullScreen","yes");
   	  	

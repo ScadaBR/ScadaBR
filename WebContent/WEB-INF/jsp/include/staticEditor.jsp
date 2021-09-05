@@ -290,8 +290,11 @@
         this.viewSelectChanged = function(value) {
         	$set("linkLink","");
             if(value!=0) {
-            	link = getAbsolutePath()+"views.shtm?viewId="+value;
-                $set("linkLink",link);
+            	//link = getAbsolutePath()+"views.shtm?viewId="+value;
+                
+            	// Use relative URLs
+            	link = "views.shtm?viewId=" + value;
+            	$set("linkLink",link);
             }
         };
     }

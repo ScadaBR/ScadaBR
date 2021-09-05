@@ -201,7 +201,7 @@
   </table>
 </c:if>
 
-<div style="padding:5px;">
+<div id="mainContent" style="padding:5px;">
   <jsp:doBody/>
 </div>
 <table width="100%" cellspacing="0" cellpadding="0" border="0">

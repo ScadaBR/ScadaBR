@@ -18,14 +18,11 @@
  */
 package com.serotonin.mango.web.mvc.controller;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -114,48 +111,38 @@ public class ViewEditController extends SimpleFormRedirectController {
 					dir.mkdirs();
 
 					// Validate image (to prevent XSS)
-					try (ByteArrayInputStream bis = new ByteArrayInputStream(bytes)) {
-						BufferedImage validImage = null;
-						validImage = ImageIO.read(bis);
+					boolean validExtension = false;
+					String[] supportedExtensions = new String[] { "gif", "jpg", "jpeg", "jfif", "pjpeg", "pjp", "png",
+							"bmp", "dib", "svg" };
+					String extension = "";
 
-						boolean validExtension = false;
-						String[] supportedExtensions = new String[] { "gif", "jpg", "jpeg", "jfif", "pjpeg", "pjp",
-								"png", "bmp", "dib" };
-						String extension = "";
+					int foo = form.getBackgroundImageMP().getOriginalFilename().lastIndexOf('.') + 1;
+					if (foo != -1)
+						extension = form.getBackgroundImageMP().getOriginalFilename().substring(foo);
 
-						int foo = form.getBackgroundImageMP().getOriginalFilename().lastIndexOf('.') + 1;
-						if (foo != -1)
-							extension = form.getBackgroundImageMP().getOriginalFilename().substring(foo);
-
-						for (String s : supportedExtensions) {
-							if (s.equals(extension.toLowerCase()))
-								validExtension = true;
-						}
-
-						// Valid image! Add it to uploads
-						if (validImage != null && validExtension == true) {
-							// Get an image id.
-							int imageId = getNextImageId(dir);
-							// Create the image file name.
-							String filename = Integer.toString(imageId);
-							int dot = form.getBackgroundImageMP().getOriginalFilename().lastIndexOf('.');
-							if (dot != -1)
-								filename += form.getBackgroundImageMP().getOriginalFilename().substring(dot);
-
-							// Save the file.
-							FileOutputStream fos = new FileOutputStream(new File(dir, filename));
-							fos.write(bytes);
-							fos.close();
-
-							form.getView().setBackgroundFilename(uploadDirectory + filename);
-						}
-
-						validImage = null;
-
-					} catch (Exception e) {
-						// Invalid image
-						e.printStackTrace();
+					for (String s : supportedExtensions) {
+						if (s.equals(extension.toLowerCase()))
+							validExtension = true;
 					}
+
+					// Valid image! Add it to uploads
+					if (validExtension) {
+						// Get an image id.
+						int imageId = getNextImageId(dir);
+						// Create the image file name.
+						String filename = Integer.toString(imageId);
+						int dot = form.getBackgroundImageMP().getOriginalFilename().lastIndexOf('.');
+						if (dot != -1)
+							filename += form.getBackgroundImageMP().getOriginalFilename().substring(dot);
+
+						// Save the file.
+						FileOutputStream fos = new FileOutputStream(new File(dir, filename));
+						fos.write(bytes);
+						fos.close();
+
+						form.getView().setBackgroundFilename(uploadDirectory + filename);
+					}
+
 				}
 			}
 		}
