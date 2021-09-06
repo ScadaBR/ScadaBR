@@ -461,7 +461,7 @@
               <option value="<c:out value="<%= DataType.FOUR_BYTE_INT_SIGNED_SWAPPED %>"/>"><fmt:message key="dsEdit.modbus.modbusDataType.4bSignedSwapped"/></option>
               <option value="<c:out value="<%= DataType.FOUR_BYTE_FLOAT %>"/>"><fmt:message key="dsEdit.modbus.modbusDataType.4bFloat"/></option>
               <option value="<c:out value="<%= DataType.FOUR_BYTE_FLOAT_SWAPPED %>"/>"><fmt:message key="dsEdit.modbus.modbusDataType.4bFloatSwapped"/></option>
-              <option value="<c:out value="<%= DataType.FOUR_BYTE_FLOAT_SWAPPED_INVERTED %>"/>"><fmt:message key="dsEdit.modbus.modbusDataType.4bFloatSwappedInverted"/></option>            
+			  <%-- <option value="<c:out value="<%= DataType.FOUR_BYTE_FLOAT_SWAPPED_INVERTED %>"/>"><fmt:message key="dsEdit.modbus.modbusDataType.4bFloatSwappedInverted"/></option> --%>
               <option value="<c:out value="<%= DataType.FOUR_BYTE_BCD %>"/>"><fmt:message key="dsEdit.modbus.modbusDataType.4bBcd"/></option>
               <option value="<c:out value="<%= DataType.EIGHT_BYTE_INT_UNSIGNED %>"/>"><fmt:message key="dsEdit.modbus.modbusDataType.8bUnsigned"/></option>
               <option value="<c:out value="<%= DataType.EIGHT_BYTE_INT_SIGNED %>"/>"><fmt:message key="dsEdit.modbus.modbusDataType.8bSigned"/></option>
