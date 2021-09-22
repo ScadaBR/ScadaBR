@@ -36,7 +36,7 @@
 	<property name="deb-file-name" value="ScadaBR.deb" />
 	<property name="reports.dir" value="${build.dir}/test-reports" />
 
-	<property name="version.number" value="0.6" />
+	<property name="version.number" value="1.2" />
 
 	<property name="libdir" location="lib" />
 	<path id="svnant.classpath">
