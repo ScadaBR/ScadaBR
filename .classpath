@@ -53,7 +53,7 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/home/celso/eclipse-workspace/scadabr-1.1.0-RC/WebContent/WEB-INF/lib/dnp3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dnp3.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mockito-all-1.9.5.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/modbus4j-3.0.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5"/>
