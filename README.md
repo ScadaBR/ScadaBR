@@ -56,6 +56,9 @@ No [Fórum do ScadaBR](forum.scadabr.com.br) você pode se informar, aprender e 
 
 Você ou sua empresa precisam de **suporte comercial para o ScadaBR**? Você pode conferir nosso [curso oficial](http://www.scadabr.com.br/curso-scadabr/) ou entrar em contato com um [integrador do ScadaBR](http://forum.scadabr.com.br/c/integradores).
 
+## Manuais e versões anteriores
+Os manuais oficiais do ScadaBR, bem como as versões anteriores do software (1.0 e 1.1), podem ser encontrados [neste repositório](https://github.com/ScadaBR/ScadaBR_Archive).
+
 ## Bugs conhecidos
 - Você pode enfrentar problemas com o OpenJDK 8 na hora de enviar e-mails. Caso você receba um alarme de erro contendo a mensagem `javax.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)` edite o arquivo `java.security`, que deve estar em `${JRE}/lib/security/java.security` (no qual `${JRE}` é o caminho para o seu Java Runtime Environment). Neste arquivo, na opção `jdk.tls.disabledAlgorithms` remova `TLSv1` e `TLSv1.1` da lista.
 
