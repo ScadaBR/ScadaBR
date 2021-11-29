@@ -36,7 +36,7 @@ O ScadaBR é um software multiplataforma baseado em Java/Tomcat. Qualquer sistem
 
 ## ScadaBR e Scada-LTS
 
-Em 2016 o ScadaBR se internacionalizou, dando origem ao projeto [Scada-LTS](https://github.com/SCADA-LTS/Scada-LTS). O Scada-LTS possui um ritmo de desenvolvimento intenso, com diversas melhorias implementadas e novas tecnologias sendo incorporadas à base de código.
+Em 2016 o ScadaBR se internacionalizou, dando origem ao projeto [Scada-LTS](https://github.com/SCADA-LTS/Scada-LTS). O Scada-LTS é desenvolvido por um time de desenvolvedores de diversos países, e possui um ritmo de desenvolvimento intenso, com diversas melhorias implementadas e novas tecnologias sendo incorporadas à base de código.
 
 Atualmente, as versões do ScadaBR são baseadas no código-fonte da última versão _open source_ do Mango M2M. Em breve, porém, lançaremos a série ScadaBR 2.x tendo como novo núcleo o Scada-LTS.
 
@@ -44,12 +44,14 @@ A tabela abaixo mostra os principais recursos presentes nas diferentes versões 
 
 Recursos   | ScadaBR 1.0 | ScadaBR 1.1 | ScadaBR 1.2 | Scada-LTS
 ---------- | ----------- | ----------- | ---------- | ---------
-Versão do Java | 6 | 7 ou 8 (depende da compilação) | 8 | 8 [(ou 11)](https://github.com/SCADA-LTS/Scada-LTS/issues/1822)
-Versão do Tomcat | 6 | 7 | 9 | 7 [(ou 8)](https://github.com/SCADA-LTS/Scada-LTS/issues/1822)
+Versão do Java | 6 | 7 ou 8 (depende da compilação) | 8 | [11](https://github.com/SCADA-LTS/Scada-LTS/wiki/Scada-LTS-Linux-installation-tutorial)
+Versão do Tomcat | 6 | 7 | 9 | [9](https://github.com/SCADA-LTS/Scada-LTS/wiki/Scada-LTS-Linux-installation-tutorial)
 Suporte a "perfis de usuário" | Não possui | Possui | Possui | Possui
 API REST | Não possui | Não possui | Não possui | Possui
 Suporte a Modbus Serial | Sim | Não | Sim | Não (será implementado no futuro)
 Instaladores | Windows, Linux (não oficial), instalação manual | Sem instaladores oficiais | Windows, Linux (inclusive Raspberry), instalação manual | Instalação via Docker ou instalação manual
+
+Para conhecer mais sobre o Scada-LTS, visite a [página do projeto no GitHub](https://github.com/SCADA-LTS/Scada-LTS/)
 
 ## Suporte
 No [Fórum do ScadaBR](forum.scadabr.com.br) você pode se informar, aprender e tirar dúvidas sobre como usar o ScadaBR. Visite também nosso [site](http://www.scadabr.com.br/) e nosso [canal no YouTube](https://www.youtube.com/channel/UC42J9rtRGzqwmj5s3BJZG6Q).
