@@ -63,6 +63,7 @@ Os manuais oficiais do ScadaBR, bem como as versões anteriores do software (1.0
 
 ## Bugs conhecidos
 - Você pode enfrentar problemas com o OpenJDK 8 na hora de enviar e-mails. Caso você receba um alarme de erro contendo a mensagem `javax.net.ssl.SSLHandshakeException: No appropriate protocol (protocol is disabled or cipher suites are inappropriate)` edite o arquivo `java.security`, que deve estar em `${JRE}/lib/security/java.security` (no qual `${JRE}` é o caminho para o seu Java Runtime Environment). Neste arquivo, na opção `jdk.tls.disabledAlgorithms` remova `TLSv1` e `TLSv1.1` da lista.
+- **O recurso de exportar projeto para um arquivo ZIP não funciona nas versões 1.1 e 1.2 do ScadaBR.** Recomendamos que você exporte as informações do seu projeto como JSON e que arquivos complementares (tais como as imagens de fundo das Representações Gráficas) sejam copiados manualmente.
 
 ## Licença
 O ScadaBR é um software livre e _open source_, disponibilizado sob [GPL 3+](https://www.gnu.org/licenses/gpl-3.0.en.html).
